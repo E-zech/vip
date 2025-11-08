@@ -12,22 +12,20 @@ export default function App() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const heroImages = [
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/fa34311b6_WhatsAppImage2025-06-12at45226PM.jpg',
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/649af5198_WhatsAppImage2025-06-12at45225PM1.jpg',
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/64f80d3fc_WhatsAppImage2025-06-12at45223PM.jpg',
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/36c5febd0_WhatsAppImage2025-06-09at14245PM2.jpg',
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/91ba71d15_WhatsAppImage2025-06-09at14245PM1.jpg'
+        '/images/1.jpeg',
+        '/images/3.jpeg',
+        '/images/4.jpeg',
     ];
 
     const galleryImages = [
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/b76056196_1.jpg',
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/211cd4178_2.jpg',
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/8b0a34dfb_3.jpg',
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/4a1cc5df2_4.jpg',
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/9ce9f22a9_5.jpg',
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/c4550e537_6.jpg',
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6780f05d2_7.jpg',
-        'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/62413558c_8.jpg'
+        '/images/6.jpeg',
+        '/images/7.png',
+        '/images/9.png',
+        '/images/10.jpeg',
+        '/images/11.jpeg',
+        '/images/8.png',
+        '/images/5.png',
+        '/images/2.jpeg',
     ];
 
     // Auto-advance slider
@@ -196,8 +194,8 @@ export default function App() {
                             key={index}
                             onClick={() => setCurrentSlide(index)}
                             className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
-                                    ? 'bg-white scale-125'
-                                    : 'bg-white/50 hover:bg-white/75'
+                                ? 'bg-white scale-125'
+                                : 'bg-white/50 hover:bg-white/75'
                                 }`}
                         />
                     ))}
@@ -210,7 +208,8 @@ export default function App() {
                     <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-16">
                         גלריה
                     </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 gallery-grid">
                         {galleryImages.map((image, index) => (
                             <div
                                 key={index}
@@ -223,12 +222,23 @@ export default function App() {
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <p className="text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">צפה בתמונה</p>
+                                    <p className="text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        צפה בתמונה
+                                    </p>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
+
+                <style jsx>{`
+    @media (min-width: 1000px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+      }
+    }
+  `}</style>
             </section>
 
             {/* About */}
@@ -273,8 +283,8 @@ export default function App() {
                         <div className="relative">
                             <div
                                 className={`transform transition-all duration-1000 ${isAboutImageVisible
-                                        ? 'translate-x-0 opacity-100'
-                                        : '-translate-x-full opacity-0'
+                                    ? 'translate-x-0 opacity-100'
+                                    : '-translate-x-full opacity-0'
                                     }`}
                             >
                                 <img
