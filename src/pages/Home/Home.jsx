@@ -70,7 +70,7 @@ export default function Home() {
                         שירותי הסעות יוקרה לאמנים, אנשי עסקים ונתב"ג בסטנדרט הגבוה ביותר.
                     </p>
                     <button
-                        onClick={() => scrollToSection('contact')}
+                        onClick={() => scrollToSection('cta-section')}
                         className="mt-10 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-xl"
                     >
                         להזמנת נסיעה
@@ -128,7 +128,7 @@ export default function Home() {
             </section>
 
             {/* --- Call to Action --- */}
-            <section className="bg-gray-50 py-16 px-6 text-center">
+            <section id="cta-section" className="bg-gray-50 py-16 px-6 text-center">
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">מוכנים לצאת לדרך?</h3>
                 <p className="text-gray-600 mb-8 max-w-xl mx-auto">צרו איתנו קשר עוד היום לתיאום נסיעה יוקרתית ומותאמת אישית.</p>
                 <a
