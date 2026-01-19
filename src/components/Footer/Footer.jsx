@@ -3,56 +3,70 @@ import { Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react';
 
 export default function Footer() {
     return (
-        <footer id="contact" className="bg-gray-900 text-white pt-16 pb-8 px-6">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-right">
+        <footer id="contact" className="bg-[#0f172a] text-white py-16 px-6 border-t border-gray-800">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-right" style={{ direction: 'rtl' }}>
 
-                {/* עמודה 1: פרטי קשר */}
-                <div className="space-y-4">
-                    <h3 className="text-2xl font-bold border-b-2 border-blue-500 pb-2 inline-block">צור קשר</h3>
-                    <div className="space-y-3 pt-4">
-                        <a href="tel:0549223745" className="flex items-center justify-end gap-3 hover:text-blue-400">
-                            <span>054-9223745</span>
-                            <Phone size={20} className="text-blue-500" />
-                        </a>
-                        <a href="mailto:eliyaz2024@gmail.com" className="flex items-center justify-end gap-3 hover:text-blue-400">
-                            <span>eliyaz2024@gmail.com</span>
-                            <Mail size={20} className="text-blue-500" />
-                        </a>
-                        <div className="flex items-center justify-end gap-3">
-                            <span>הרצליה, ישראל</span>
-                            <MapPin size={20} className="text-blue-500" />
+                {/* צור קשר - יישור לימין עם אייקונים משמאל לטקסט כמו בתמונה */}
+                <div className="flex flex-col items-start md:items-start">
+                    <h3 className="text-2xl font-bold mb-2 relative pb-2 inline-block border-b-4 border-blue-600">
+                        צור קשר
+                    </h3>
+                    <div className="space-y-4 mt-6 w-full">
+                        {/* שימוש ב-flex-row-reverse כדי שהאייקון יהיה משמאל לטקסט אך הכל צמוד לימין */}
+                        <div className="flex items-center justify-start gap-3 group cursor-pointer">
+                            <Phone size={20} className="text-blue-500 shrink-0" />
+                            <span className="text-gray-400 group-hover:text-white transition-colors">054-9223745</span>
+                        </div>
+                        <div className="flex items-center justify-start gap-3 group cursor-pointer">
+                            <Mail size={20} className="text-blue-500 shrink-0" />
+                            <span className="text-gray-400 group-hover:text-white transition-colors">eliyaz2024@gmail.com</span>
+                        </div>
+                        <div className="flex items-center justify-start gap-3 group cursor-pointer">
+                            <MapPin size={20} className="text-blue-500 shrink-0" />
+                            <span className="text-gray-400 group-hover:text-white transition-colors">הרצליה, ישראל</span>
                         </div>
                     </div>
                 </div>
 
-                {/* עמודה 2: שירותים */}
-                <div className="space-y-4">
-                    <h3 className="text-2xl font-bold border-b-2 border-blue-500 pb-2 inline-block">השירותים שלנו</h3>
-                    <ul className="space-y-2 pt-4 text-gray-400">
-                        <li>הסעות VIP לאמנים</li>
-                        <li>נסיעות עסקים ומשלחות</li>
-                        <li>שירות VIP לנתב"ג</li>
-                        <li>הסעות לאירועים מיוחדים</li>
+                {/* השירותים שלנו */}
+                <div className="flex flex-col items-start">
+                    <h3 className="text-2xl font-bold mb-2 relative pb-2 inline-block border-b-4 border-blue-600">
+                        השירותים שלנו
+                    </h3>
+                    <ul className="space-y-3 mt-6 text-gray-400">
+                        <li className="hover:text-white transition-colors">תיירים</li>
+                        <li className="hover:text-white transition-colors">הסעות אמנים</li>
+                        <li className="hover:text-white transition-colors">נסיעות עסקיות</li>
+                        <li className="hover:text-white transition-colors">שירותי הסעות לנתב"ג</li>
+                        <li className="hover:text-white transition-colors">חתונות</li>
                     </ul>
                 </div>
 
-                {/* עמודה 3: רשתות חברתיות */}
-                <div className="space-y-4">
-                    <h3 className="text-2xl font-bold border-b-2 border-blue-500 pb-2 inline-block">עקבו אחרינו</h3>
-                    <div className="flex justify-end gap-4 pt-4">
-                        <a href="#" className="bg-pink-600 p-3 rounded-full hover:scale-110 transition-transform">
+                {/* עקבו אחרינו */}
+                <div className="flex flex-col items-start">
+                    <h3 className="text-2xl font-bold mb-2 relative pb-2 inline-block border-b-4 border-blue-600">
+                        עקבו אחרינו
+                    </h3>
+                    <div className="flex gap-4 mt-6">
+                        <a href="#" className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-all transform hover:scale-110">
+                            <Facebook size={24} fill="white" />
+                        </a>
+                        <a href="#" className="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full flex items-center justify-center hover:opacity-90 transition-all transform hover:scale-110">
                             <Instagram size={24} />
                         </a>
-                        <a href="#" className="bg-blue-600 p-3 rounded-full hover:scale-110 transition-transform">
-                            <Facebook size={24} />
-                        </a>
+                    </div>
+                    {/* שעות פעילות כמו בתמונה האחרונה */}
+                    <div className="mt-6 text-gray-500 text-sm space-y-1">
+                        <p>שעות פעילות:</p>
+                        <p>ראשון - חמישי</p>
+                        <p>שישי - עד כניסת שבת</p>
                     </div>
                 </div>
+
             </div>
 
-            <div className="mt-16 border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                <p>© 2025 אליה הסעות VIP. כל הזכויות שמורות.</p>
-                <p className="mt-2">Built with React & Tailwind</p>
+            <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                <p>© 2026 אליה הסעות VIP. כל הזכויות שמורות.</p>
             </div>
         </footer>
     );

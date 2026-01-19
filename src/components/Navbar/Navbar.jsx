@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GeneralContext } from '../../context/GeneralContext';
 
 export default function Navbar() {
@@ -8,13 +8,24 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { scrollToSection } = useContext(GeneralContext);
     const location = useLocation();
+    const navigate = useNavigate();
 
-    // שינוי צבע הנייבר בגלילה
+    const isHomePage = location.pathname === '/';
+
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 50);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleLogoClick = () => {
+        if (isHomePage) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            navigate('/');
+        }
+        setIsMobileMenuOpen(false);
+    };
 
     const navLinks = [
         { name: 'דף הבית', path: '/', isSection: false },
@@ -23,26 +34,32 @@ export default function Navbar() {
         { name: 'צור קשר', sectionId: 'contact', isSection: true },
     ];
 
+    const navBackground = !isHomePage || isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4';
+    const textColor = !isHomePage || isScrolled ? 'text-gray-900' : 'text-white';
+
     return (
-        <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
+        <nav className={`fixed w-full z-[100] transition-all duration-300 ${navBackground}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
-                {/* כפתור יצירת קשר מהיר (Desktop) */}
-                <div className="hidden md:block">
-                    <a href="tel:0549223745" className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">
-                        <Phone size={18} />
-                        <span className="font-bold">חייגו עכשיו</span>
-                    </a>
+                {/* לוגו תמונה - לחיץ */}
+                <div className="flex-1 flex justify-start">
+                    <div onClick={handleLogoClick} className="cursor-pointer">
+                        <img
+                            src="/logo.png"
+                            alt="Eliya VIP Logo"
+                            className="h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform"
+                        />
+                    </div>
                 </div>
 
-                {/* תפריט ניווט (Desktop) */}
-                <div className="hidden md:flex gap-8 items-center">
+                {/* תפריט Desktop */}
+                <div className="hidden md:flex gap-8 items-center justify-center">
                     {navLinks.map((link) => (
                         link.isSection ? (
                             <button
                                 key={link.name}
                                 onClick={() => scrollToSection(link.sectionId)}
-                                className={`font-medium hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+                                className={`text-lg font-bold hover:text-blue-600 transition-colors ${textColor}`}
                             >
                                 {link.name}
                             </button>
@@ -50,7 +67,7 @@ export default function Navbar() {
                             <Link
                                 key={link.name}
                                 to={link.path}
-                                className={`font-medium hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+                                className={`text-lg font-bold hover:text-blue-600 transition-colors ${textColor}`}
                             >
                                 {link.name}
                             </Link>
@@ -58,34 +75,43 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                {/* לוגו / שם העסק */}
-                <Link to="/" className={`text-2xl font-black ${isScrolled ? 'text-blue-600' : 'text-white'}`}>
-                    ELIYA VIP
-                </Link>
+                {/* לוגו טקסט */}
+                <div className="flex-1 flex justify-end items-center gap-4">
+                    <div onClick={handleLogoClick} className={`text-xl md:text-2xl font-black tracking-tighter cursor-pointer ${textColor}`}>
+                        ELIYA <span className="text-blue-600">VIP</span>
+                    </div>
 
-                {/* כפתור המבורגר (Mobile) */}
-                <button className="md:hidden text-gray-800" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={28} className={isScrolled ? 'text-black' : 'text-white'} /> : <Menu size={28} className={isScrolled ? 'text-black' : 'text-white'} />}
-                </button>
+                    {/* כפתור המבורגר */}
+                    <button
+                        className="md:hidden p-1"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
+                        {isMobileMenuOpen ? (
+                            <X size={28} className="text-gray-900" />
+                        ) : (
+                            <Menu size={28} className={textColor} />
+                        )}
+                    </button>
+                </div>
             </div>
 
-            {/* תפריט מובייל נפתח */}
-            {isMobileMenuOpen && (
-                <div className="absolute top-full left-0 w-full bg-white shadow-xl md:hidden flex flex-col p-6 gap-4 text-right">
+            {/* תפריט מובייל - נקי וקומפקטי */}
+            <div className={`absolute top-full right-0 w-full bg-white shadow-2xl transition-all duration-300 overflow-hidden md:hidden ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                <div className="flex flex-col p-4 border-t border-gray-100">
                     {navLinks.map((link) => (
                         <button
                             key={link.name}
                             onClick={() => {
-                                link.isSection ? scrollToSection(link.sectionId) : window.location.href = link.path;
+                                link.isSection ? scrollToSection(link.sectionId) : navigate(link.path);
                                 setIsMobileMenuOpen(false);
                             }}
-                            className="text-xl font-bold text-gray-800 border-b pb-2"
+                            className="py-4 text-right text-lg font-bold text-gray-800 border-b border-gray-50 last:border-0 active:bg-gray-50"
                         >
                             {link.name}
                         </button>
                     ))}
                 </div>
-            )}
+            </div>
         </nav>
     );
 }
