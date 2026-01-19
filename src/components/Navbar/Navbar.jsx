@@ -31,7 +31,7 @@ export default function Navbar() {
         { name: 'דף הבית', path: '/', isSection: false },
         { name: 'אודות', sectionId: 'about', isSection: true },
         { name: 'גלריה', path: '/gallery', isSection: false },
-        { name: 'צור קשר', sectionId: 'contact', isSection: true },
+        { name: 'צור קשר', sectionId: 'cta-section', isSection: true },
     ];
 
     const navBackground = !isHomePage || isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4';

@@ -6,25 +6,42 @@ export default function Footer() {
         <footer id="contact" className="bg-[#0f172a] text-white py-16 px-6 border-t border-gray-800">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-right" style={{ direction: 'rtl' }}>
 
-                {/* צור קשר - יישור לימין עם אייקונים משמאל לטקסט כמו בתמונה */}
+                {/* צור קשר */}
                 <div className="flex flex-col items-start md:items-start">
                     <h3 className="text-2xl font-bold mb-2 relative pb-2 inline-block border-b-4 border-blue-600">
                         צור קשר
                     </h3>
                     <div className="space-y-4 mt-6 w-full">
-                        {/* שימוש ב-flex-row-reverse כדי שהאייקון יהיה משמאל לטקסט אך הכל צמוד לימין */}
-                        <div className="flex items-center justify-start gap-3 group cursor-pointer">
-                            <Phone size={20} className="text-blue-500 shrink-0" />
-                            <span className="text-gray-400 group-hover:text-white transition-colors">054-9223745</span>
-                        </div>
-                        <div className="flex items-center justify-start gap-3 group cursor-pointer">
-                            <Mail size={20} className="text-blue-500 shrink-0" />
-                            <span className="text-gray-400 group-hover:text-white transition-colors">eliyaz2024@gmail.com</span>
-                        </div>
-                        <div className="flex items-center justify-start gap-3 group cursor-pointer">
-                            <MapPin size={20} className="text-blue-500 shrink-0" />
-                            <span className="text-gray-400 group-hover:text-white transition-colors">הרצליה, ישראל</span>
-                        </div>
+
+                        {/* קישור לטלפון */}
+                        <a
+                            href="tel:+972549223745"
+                            className="flex items-center justify-start gap-3 group cursor-pointer transition-all duration-300 hover:scale-105 origin-right"
+                        >
+                            <Phone size={20} className="text-blue-500 shrink-0 transition-transform group-hover:rotate-12" />
+                            <span className="text-gray-400 group-hover:text-white transition-colors font-medium">054-9223745</span>
+                        </a>
+
+                        {/* קישור לאימייל */}
+                        <a
+                            href="mailto:eliyaz2024@gmail.com"
+                            className="flex items-center justify-start gap-3 group cursor-pointer transition-all duration-300 hover:scale-105 origin-right"
+                        >
+                            <Mail size={20} className="text-blue-500 shrink-0 transition-transform group-hover:-translate-y-1" />
+                            <span className="text-gray-400 group-hover:text-white transition-colors font-medium">eliyaz2024@gmail.com</span>
+                        </a>
+
+                        {/* קישור למיקום (Google Maps) */}
+                        <a
+                            href="https://share.google/v53rRlBs9bvCHbueO"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-start gap-3 group cursor-pointer transition-all duration-300 hover:scale-105 origin-right"
+                        >
+                            <MapPin size={20} className="text-blue-500 shrink-0 transition-transform group-hover:bounce" />
+                            <span className="text-gray-400 group-hover:text-white transition-colors font-medium">הרצליה, ישראל</span>
+                        </a>
+
                     </div>
                 </div>
 
