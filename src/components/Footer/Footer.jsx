@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Star } from 'lucide-react';
 
 export default function Footer() {
     return (
@@ -60,24 +60,20 @@ export default function Footer() {
                 </div>
 
                 {/* עקבו אחרינו */}
-                <div className="flex flex-col items-start">
-                    <h3 className="text-2xl font-bold mb-2 relative pb-2 inline-block border-b-4 border-blue-600">
-                        עקבו אחרינו
-                    </h3>
-                    <div className="flex gap-4 mt-6">
-                        <a href="#" className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-all transform hover:scale-110">
-                            <Facebook size={24} fill="white" />
-                        </a>
-                        <a href="#" className="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full flex items-center justify-center hover:opacity-90 transition-all transform hover:scale-110">
-                            <Instagram size={24} />
+                <div className="flex flex-col items-center space-y-4">
+                    <h3 className="text-xl font-bold mb-2 text-gold-400">המלצות</h3>
+                    <div className="flex gap-4">
+                        <a
+                            href="https://share.google/BCQqUqRkYVA5tuAdp"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-3 bg-white/10 rounded-full hover:bg-gold-500/20 hover:text-gold-400 transition-all flex items-center justify-center"
+                            title="כתבו לנו ביקורת בגוגל"
+                        >
+                            <Star size={24} className="text-yellow-500 fill-yellow-500" />
                         </a>
                     </div>
-                    {/* שעות פעילות כמו בתמונה האחרונה */}
-                    <div className="mt-6 text-gray-500 text-sm space-y-1">
-                        <p>שעות פעילות:</p>
-                        <p>ראשון - חמישי</p>
-                        <p>שישי - עד כניסת שבת</p>
-                    </div>
+                    <span className="text-sm text-slate-400">לחצו כדי לדרג אותנו בגוגל</span>
                 </div>
 
             </div>
@@ -88,3 +84,4 @@ export default function Footer() {
         </footer>
     );
 }
+
