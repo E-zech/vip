@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Menu, X, Languages } from 'lucide-react'; // הוספתי אייקון שפה
+import { Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GeneralContext } from '../../context/GeneralContext';
 import { translations } from '../../translation';
@@ -7,7 +7,7 @@ import { translations } from '../../translation';
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const { scrollToSection, lang, setLang } = useContext(GeneralContext); // מניח שתוסיף לקונטקסט
+    const { scrollToSection, lang, setLang } = useContext(GeneralContext);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -39,37 +39,48 @@ export default function Navbar() {
 
     return (
         <nav className={`fixed w-full z-[100] transition-all duration-300 ${navBackground}`}>
-            <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
 
-                {/* לוגו תמונה */}
-                <div className="flex-1 flex justify-start">
-                    <Link to="/" className="cursor-pointer">
-                        <img src="/logo.png" alt="Logo" className="h-10 md:h-14 w-auto object-contain hover:scale-105 transition-transform" />
-                    </Link>
+                {/* צד מותג: לוגו תמונה + לוגו טקסט צמודים */}
+                <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/')}>
+                    <img
+                        src="/logo.png"
+                        alt="Logo"
+                        className="h-10 md:h-14 w-auto object-contain transition-transform group-hover:scale-105"
+                    />
+                    <div className={`text-xl md:text-2xl font-black tracking-tighter whitespace-nowrap shrink-0 ${textColor}`}>
+                        ELIYA <span className="text-blue-600">VIP</span>
+                    </div>
                 </div>
 
-                {/* תפריט Desktop */}
-                <div className="hidden md:flex gap-8 items-center justify-center">
+                {/* תפריט Desktop - מרכזי */}
+                <div className="hidden md:flex gap-8 items-center">
                     {navLinks.map((link) => (
                         link.isSection ? (
-                            <button key={link.name} onClick={() => { if (!isHomePage) navigate('/'); setTimeout(() => scrollToSection(link.sectionId), 100); }} className={`text-lg font-bold hover:text-blue-600 transition-colors ${textColor}`}>
+                            <button
+                                key={link.name}
+                                onClick={() => { if (!isHomePage) navigate('/'); setTimeout(() => scrollToSection(link.sectionId), 100); }}
+                                className={`text-lg font-bold hover:text-blue-600 transition-colors ${textColor}`}
+                            >
                                 {link.name}
                             </button>
                         ) : (
-                            <Link key={link.name} to={link.path} className={`text-lg font-bold hover:text-blue-600 transition-colors ${textColor}`}>
+                            <Link
+                                key={link.name}
+                                to={link.path}
+                                className={`text-lg font-bold hover:text-blue-600 transition-colors ${textColor}`}
+                            >
                                 {link.name}
                             </Link>
                         )
                     ))}
                 </div>
 
-                {/* לוגו טקסט וכפתור שפה */}
-                <div className="flex-1 flex justify-end items-center gap-4">
-
-                    {/* כפתור החלפת שפה Toggle */}
+                {/* צד פונקציונלי: כפתור שפה + המבורגר */}
+                <div className="flex items-center gap-4">
                     <button
                         onClick={toggleLanguage}
-                        className={`px-3 py-1 rounded-md border-2 font-black text-sm transition-all duration-300 ${!isHomePage || isScrolled
+                        className={`px-3 py-1 rounded-md border-2 font-black text-sm transition-all duration-300 shrink-0 ${!isHomePage || isScrolled
                             ? 'border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white'
                             : 'border-white text-white hover:bg-white hover:text-gray-900'
                             }`}
@@ -77,12 +88,8 @@ export default function Navbar() {
                         {lang === 'he' ? 'EN' : 'HE'}
                     </button>
 
-                    <div onClick={() => navigate('/')} className={`text-xl md:text-2xl font-black tracking-tighter cursor-pointer ${textColor}`}>
-                        ELIYA <span className="text-blue-600">VIP</span>
-                    </div>
-
                     {/* המבורגר למובייל */}
-                    <button className="md:hidden p-1" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                    <button className="md:hidden p-1 shrink-0" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                         {isMobileMenuOpen ? <X size={28} className="text-gray-900" /> : <Menu size={28} className={textColor} />}
                     </button>
                 </div>
