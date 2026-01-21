@@ -1,12 +1,17 @@
 import React, { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { translations } from '../translation'; // ייבוא ללא S כפי שביקשת
 
 export const GeneralContext = createContext();
 
 export const GeneralProvider = ({ children }) => {
     const navigate = useNavigate();
 
-    // סנכרון גלילה - אם אנחנו בדף אחר, קודם חוזרים הביתה
+    // ניהול שפה
+    const [lang, setLang] = useState('he');
+    const t = translations[lang];
+
+    // פונקציית גלילה משופרת
     const scrollToSection = (sectionId) => {
         if (window.location.pathname !== '/') {
             navigate('/');
@@ -20,10 +25,22 @@ export const GeneralProvider = ({ children }) => {
         }
     };
 
+    // פונקציית החלפת שפה (Toggle)
+    const toggleLang = () => {
+        const newLang = lang === 'he' ? 'en' : 'he';
+        setLang(newLang);
+        // עדכון מאפייני ה-HTML של הדפדפן (כיוון ושפה)
+        document.documentElement.dir = newLang === 'he' ? 'rtl' : 'ltr';
+        document.documentElement.lang = newLang;
+    };
+
     const value = {
         scrollToSection,
         navigate,
-        // כאן נוסיף בהמשך את הלוגיקה של שליפת התמונות מה-DB
+        lang,     // השפה הנוכחית ('he' או 'en')
+        setLang,  // פונקציה לעדכון ישיר אם צריך
+        toggleLang, // פונקציית ה-Toggle לכפתור ב-Navbar
+        t         // האובייקט עם התרגומים הנוכחיים
     };
 
     return (
