@@ -6,20 +6,22 @@ export const translations = {
         nav_gallery: 'גלריה',
         nav_contact: 'צור קשר',
         // Hero
-        hero_subtitle: 'שירותי הסעות יוקרה לאמנים, אנשי עסקים ונתב"ג בסטנדרט הגבוה ביותר.',
+        hero_subtitle: 'שירותי הסעות יוקרה לתיירים, אמנים, אנשי עסקים, נתב"ג וחתונות בסטנדרט הגבוה ביותר.',
         hero_cta: 'להזמנת נסיעה',
         // About
         about_title: 'חווית הנסיעה שלך',
         about_subtitle: 'מתחילה כאן.',
         about_description: '"כל נסיעה מותאמת לצרכים שלכם עם רכב מפנק, כורסאות נוחות וחוויה יוקרתית מהרגע הראשון. מה שנשאר לכם זה ליהנות מהדרך..."',
+        service_tourists: 'תיירים',
         service_artists: 'הסעות אמנים',
         service_business: 'אנשי עסקים',
         service_airport: 'נתב"ג VIP',
+        service_weddings: 'חתונות',
         // CTA
         cta_title: 'מוכנים לצאת לדרך?',
         cta_description: 'צרו איתנו קשר עוד היום לתיאום נסיעה יוקרתית ומותאמת אישית.',
         cta_whatsapp: 'שלחו הודעה ב-WhatsApp',
-        // Gallery (שיהיה לך הכל במקום אחד)
+        // Gallery
         gallery_title: 'הגלריה שלנו',
         album_van_title: 'וואן',
         album_van_desc: 'תמונות הרכב חוץ ופנים - חווית נסיעה בסטנדרט אחר',
@@ -45,11 +47,6 @@ export const translations = {
         footer_reviews: "המלצות",
         footer_rate_us: "לחצו כדי לדרג אותנו בגוגל",
         footer_rights: "אליה הסעות VIP. כל הזכויות שמורות.",
-        service_tourists: "תיירים",
-        service_artists: "הסעות אמנים",
-        service_business: "נסיעות עסקיות",
-        service_airport: "שירותי הסעות לנתב\"ג",
-        service_weddings: "חתונות"
     },
     en: {
         // Navbar
@@ -58,15 +55,17 @@ export const translations = {
         nav_gallery: 'Gallery',
         nav_contact: 'Contact',
         // Hero
-        hero_subtitle: 'Luxury transportation services for artists, business people and Ben Gurion Airport at the highest standard.',
+        hero_subtitle: 'Luxury transportation services for tourists, artists, business people, airport transfers and weddings at the highest standard.',
         hero_cta: 'Book a Ride',
         // About
         about_title: 'Your Travel Experience',
         about_subtitle: 'Starts Here.',
         about_description: '"Every trip is tailored to your needs with a luxurious vehicle, comfortable armchairs and a premium experience from the first moment. All you have to do is enjoy the journey..."',
+        service_tourists: 'Tourists',
         service_artists: 'Artists Transport',
         service_business: 'Business Class',
         service_airport: 'Airport VIP',
+        service_weddings: 'Weddings',
         // CTA
         cta_title: 'Ready to go?',
         cta_description: 'Contact us today to coordinate a luxurious and personalized trip.',
@@ -97,10 +96,5 @@ export const translations = {
         footer_reviews: "Reviews",
         footer_rate_us: "Click to rate us on Google",
         footer_rights: "Eliya VIP Travel. All rights reserved.",
-        service_tourists: "Tourists",
-        service_artists: "Artists Transport",
-        service_business: "Business Trips",
-        service_airport: "Airport Services",
-        service_weddings: "Weddings"
     }
 };

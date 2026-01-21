@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { Mic, Briefcase, Plane, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Mic, Briefcase, Plane, Users, Heart } from 'lucide-react';
 import { GeneralContext } from '../../context/GeneralContext';
 
 export default function Home() {
@@ -26,12 +26,9 @@ export default function Home() {
         return () => observer.disconnect();
     }, []);
 
-    const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-    const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-
     return (
         <div className="w-full">
-            {/* Hero Section */}
+            {/* Hero Section - ללא חיצים */}
             <section className="relative h-screen w-full overflow-hidden bg-black">
                 <div className="absolute inset-0">
                     {heroImages.map((image, index) => (
@@ -45,26 +42,19 @@ export default function Home() {
                     <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter drop-shadow-2xl">
                         ELIYA <span className="text-blue-500">VIP</span>
                     </h1>
-                    <p className="text-xl md:text-3xl font-light max-w-2xl leading-relaxed drop-shadow-md">
+                    <p className="text-xl md:text-3xl font-light max-w-3xl leading-relaxed drop-shadow-md">
                         {t.hero_subtitle}
                     </p>
                     <button onClick={() => scrollToSection('cta-section')} className="mt-10 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-xl">
                         {t.hero_cta}
                     </button>
                 </div>
-
-                <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors">
-                    <ChevronLeft size={48} />
-                </button>
-                <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors">
-                    <ChevronRight size={48} />
-                </button>
             </section>
 
             {/* About Section */}
             <section id="about" ref={aboutRef} className="py-24 px-6 bg-white overflow-hidden">
                 <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-                    {/* טקסט אודות - שים לב לשימוש ב-lang כדי לשנות את כיוון האנימציה */}
+
                     <div className={`space-y-8 transition-all duration-1000 ${isAboutVisible ? 'translate-x-0 opacity-100' : (lang === 'he' ? 'translate-x-20' : '-translate-x-20') + ' opacity-0'}`}>
                         <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
                             {t.about_title} <br />
@@ -74,15 +64,21 @@ export default function Home() {
                             {t.about_description}
                         </p>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                        {/* גריד שירותים - החזרת העיצוב המקורי עם הריווח החדש */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
                             {[
-                                { icon: <Mic />, title: t.service_artists, color: 'bg-blue-50 text-blue-600' },
-                                { icon: <Briefcase />, title: t.service_business, color: 'bg-green-50 text-green-600' },
-                                { icon: <Plane />, title: t.service_airport, color: 'bg-purple-50 text-purple-600' }
+                                { icon: <Users size={28} />, title: t.service_tourists, color: 'bg-orange-50 text-orange-600' },
+                                { icon: <Mic size={28} />, title: t.service_artists, color: 'bg-blue-50 text-blue-600' },
+                                { icon: <Briefcase size={28} />, title: t.service_business, color: 'bg-green-50 text-green-600' },
+                                { icon: <Plane size={28} />, title: t.service_airport, color: 'bg-purple-50 text-purple-600' },
+                                { icon: <Heart size={28} />, title: t.service_weddings, color: 'bg-pink-50 text-pink-600' }
                             ].map((item, idx) => (
-                                <div key={idx} className={`${item.color} p-6 rounded-2xl flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-shadow`}>
-                                    <div className="mb-3">{item.icon}</div>
-                                    <span className="font-bold">{item.title}</span>
+                                <div
+                                    key={idx}
+                                    className={`${item.color} p-8 rounded-2xl flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all hover:scale-105`}
+                                >
+                                    <div className="mb-4">{item.icon}</div>
+                                    <span className="font-bold text-lg">{item.title}</span>
                                 </div>
                             ))}
                         </div>
@@ -99,7 +95,7 @@ export default function Home() {
             <section id="cta-section" className="bg-gray-50 py-16 px-6 text-center">
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">{t.cta_title}</h3>
                 <p className="text-gray-600 mb-8 max-w-xl mx-auto">{t.cta_description}</p>
-                <a href="https://wa.me/message/C4XMLFWCJIHPB1" target="_blank" className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full transition-all shadow-lg">
+                <a href="https://wa.me/message/C4XMLFWCJIHPB1" target="_blank" rel="noreferrer" className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full transition-all shadow-lg">
                     {t.cta_whatsapp}
                 </a>
             </section>
